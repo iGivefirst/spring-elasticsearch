@@ -6,7 +6,7 @@
 	<artifactId>spring-elasticsearch</artifactId>
 	<packaging>jar</packaging>
 	<name>spring-elasticsearch</name>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<url>https://github.com/dadoonet/spring-elasticsearch</url>
     <description>
         Spring factories for Elasticsearch
@@ -27,8 +27,11 @@
 	</licenses>
   	
 	<properties>
-		<spring.version>3.2.2.RELEASE</spring.version>
-		<elasticsearch.version>1.0.0</elasticsearch.version>
+		<spring.version>3.2.5.RELEASE</spring.version>
+    <slf4j.api.version>1.6.6</slf4j.api.version>
+    <slf4j.version>1.7.7</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<elasticsearch.version>1.2.2</elasticsearch.version>
 	</properties>
 
 	<developers>
@@ -70,26 +73,22 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
+				<version>3.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.8</version>
+				<version>2.9.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.1.2</version>
+				<version>2.3</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>2.4</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -141,9 +140,25 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-            <optional>true</optional>
-		</dependency>
+      <version>${log4j.version}</version>
+      <optional>true</optional>
+    </dependency>
+
+	<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
 
 		<dependency>
 			<groupId>org.elasticsearch</groupId>
@@ -163,7 +178,7 @@
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
+    <dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
