@@ -15,7 +15,6 @@ public class GenericInvocationHandler<T> implements InvocationHandler {
 		this.nodeFuture = nodeFuture;
 	}
 
-	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		if (bean == null) {
 			bean = nodeFuture.get();
