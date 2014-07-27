@@ -20,8 +20,8 @@
 package fr.pilato.spring.elasticsearch;
 
 import fr.pilato.spring.elasticsearch.proxy.GenericInvocationHandler;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesResponse;
 import org.elasticsearch.action.admin.indices.close.CloseIndexResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
@@ -160,7 +160,7 @@ import java.util.concurrent.Future;
 public abstract class ElasticsearchAbstractClientFactoryBean extends ElasticsearchAbstractFactoryBean 
 	implements FactoryBean<Client>,	InitializingBean, DisposableBean {
 
-	protected static Log logger = LogFactory.getLog(ElasticsearchAbstractClientFactoryBean.class);
+	protected static Logger logger = LoggerFactory.getLogger(ElasticsearchAbstractClientFactoryBean.class);
 
 	protected Client client;
 	protected Client proxyfiedClient;
