@@ -325,14 +325,12 @@ public abstract class ElasticsearchAbstractClientFactoryBean extends Elasticsear
 		this.classpathRoot = classpathRoot;
 	}
 
-	@Override
 	public void afterPropertiesSet() throws Exception {
 		logger.info("Starting ElasticSearch client");
 		
 		if (async) {
 			Assert.notNull(taskExecutor);
 			Future<Client> future = taskExecutor.submit(new Callable<Client>() {
-				@Override
 				public Client call() throws Exception {
 					return initialize();
 				}
@@ -357,8 +355,7 @@ public abstract class ElasticsearchAbstractClientFactoryBean extends Elasticsear
 
 		return client;
 	}
-
-	@Override
+  
 	public void destroy() throws Exception {
 		try {
 			logger.info("Closing ElasticSearch client");
@@ -370,17 +367,14 @@ public abstract class ElasticsearchAbstractClientFactoryBean extends Elasticsear
 		}
 	}
 
-	@Override
 	public Client getObject() throws Exception {
 		return async ? proxyfiedClient : client;
 	}
 
-	@Override
 	public Class<Client> getObjectType() {
 		return Client.class;
 	}
 
-	@Override
 	public boolean isSingleton() {
 		return true;
 	}
@@ -654,7 +648,7 @@ public abstract class ElasticsearchAbstractClientFactoryBean extends Elasticsear
 	 */
 	private boolean isTemplateExist(String template) {
 		ClusterState cs = client.admin().cluster().prepareState()
-				.setIndexTemplates(template).execute().actionGet()
+				.setIndices(template).execute().actionGet()
 				.getState();
 		final IndexTemplateMetaData mdd = cs.getMetaData().templates()
 				.get(template);
