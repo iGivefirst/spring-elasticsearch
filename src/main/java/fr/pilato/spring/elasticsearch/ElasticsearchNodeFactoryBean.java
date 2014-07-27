@@ -54,13 +54,11 @@ public class ElasticsearchNodeFactoryBean extends ElasticsearchAbstractFactoryBe
 	private Node node;
 	private Node proxyfiedNode;
 
-	@Override
 	public void afterPropertiesSet() throws Exception {
 		if (async) {
 			Assert.notNull(taskExecutor);
 
 			Future<Node> nodeFuture = taskExecutor.submit(new Callable<Node>() {
-				@Override
 				public Node call() throws Exception {
 					return initialize();
 				}
@@ -74,7 +72,6 @@ public class ElasticsearchNodeFactoryBean extends ElasticsearchAbstractFactoryBe
 	}
 
 
-	@Override
 	public void destroy() throws Exception {
 		try {
 			logger.info("Closing ElasticSearch node " + node.settings().get("name") );
@@ -84,17 +81,14 @@ public class ElasticsearchNodeFactoryBean extends ElasticsearchAbstractFactoryBe
 		}
 	}
 
-	@Override
 	public Node getObject() throws Exception {
 		return async ? proxyfiedNode : node;
 	}
 
-	@Override
 	public Class<Node> getObjectType() {
 		return Node.class;
 	}
 
-	@Override
 	public boolean isSingleton() {
 		return true;
 	}
